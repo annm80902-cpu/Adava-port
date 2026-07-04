@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adava Arts — Ameh David, Director</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Work+Sans:wght@300;400;500;600&display=swap');
+
+  :root{
+    --cream:#FBF6EF;
+    --blush:#F4E1E4;
+    --blush-deep:#EBCBCF;
+    --rose:#B3717F;
+    --rose-deep:#8F5561;
+    --sage:#93A688;
+    --sage-deep:#728561;
+    --ink:#372B30;
+    --ink-soft:#7A6B70;
+    --paper:#FFFDFB;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    overflow-x:hidden;
+  }
+
+  a{color:inherit;text-decoration:none;}
+
+  .wrap{max-width:1120px;margin:0 auto;padding:0 32px;}
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:fixed;top:0;left:0;right:0;
+    z-index:100;
+    background:rgba(251,246,239,0.85);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(179,113,127,0.15);
+  }
+  nav .wrap{
+    display:flex;align-items:center;justify-content:space-between;
+    height:72px;
+  }
+  .brand{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    font-size:1.25rem;
+    letter-spacing:0.02em;
+  }
+  .brand span{font-style:italic;font-weight:300;color:var(--rose);}
+  .navlinks{display:flex;gap:32px;font-size:0.85rem;letter-spacing:0.04em;}
+  .navlinks a{color:var(--ink-soft);transition:color .2s;}
+  .navlinks a:hover{color:var(--rose-deep);}
+  @media(max-width:720px){.navlinks{display:none;}}
+
+  /* ---------- HERO / SKETCH INTRO ---------- */
+  .hero{
+    position:relative;
+    min-height:100vh;
+    display:flex;flex-direction:column;
+    align-items:center;justify-content:center;
+    text-align:center;
+    background:
+      radial-gradient(ellipse at 50% 30%, var(--blush) 0%, var(--cream) 70%);
+    padding:120px 24px 60px;
+  }
+
+  svg.sketch{width:min(88vw,760px);overflow:visible;}
+  .sketch-path{
+    fill:none;stroke:var(--rose-deep);stroke-width:2.2;
+    stroke-linecap:round;stroke-linejoin:round;
+    stroke-dasharray:2600;stroke-dashoffset:2600;
+    animation:draw 2.6s cubic-bezier(.65,.05,.36,1) forwards;
+  }
+  @keyframes draw{to{stroke-dashoffset:0;}}
+  .fill-in{
+    opacity:0;animation:fadeFill 1.2s ease-out forwards;animation-delay:2.4s;
+  }
+  @keyframes fadeFill{to{opacity:1;}}
+
+  .hero-tagline{
+    margin-top:18px;
+    font-size:0.78rem;
+    letter-spacing:0.38em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    opacity:0;
+    animation:fadeUp 1.2s ease-out forwards;
+    animation-delay:2.9s;
+  }
+
+  .hero-credit{
+    margin-top:34px;
+    opacity:0;
+    animation:fadeUp 1.2s ease-out forwards;
+    animation-delay:3.4s;
+  }
+  .hero-credit .by{
+    font-size:0.65rem;letter-spacing:0.3em;text-transform:uppercase;
+    color:var(--ink-soft);margin-bottom:6px;
+  }
+  .hero-credit .name{
+    font-family:'Fraunces',serif;font-style:italic;font-weight:500;
+    font-size:1.3rem;color:var(--rose-deep);
+  }
+
+  @keyframes fadeUp{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
+
+  .scroll-cue{
+    position:absolute;bottom:36px;left:50%;transform:translateX(-50%);
+    font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;
+    color:var(--ink-soft);
+    opacity:0;animation:fadeUp 1s ease-out forwards, bob 2.2s ease-in-out infinite;
+    animation-delay:4.2s, 5.2s;
+  }
+  @keyframes bob{0%,100%{transform:translate(-50%,0);}50%{transform:translate(-50%,6px);}}
+
+  /* ---------- SECTION SHARED ---------- */
+  section{padding:110px 0;}
+  .eyebrow{
+    font-size:0.72rem;letter-spacing:0.32em;text-transform:uppercase;
+    color:var(--rose);font-weight:500;margin-bottom:14px;display:block;
+  }
+  h2{
+    font-family:'Fraunces',serif;font-weight:500;font-size:2.4rem;
+    line-height:1.15;margin-bottom:8px;
+  }
+  h2 em{font-style:italic;font-weight:400;color:var(--rose-deep);}
+
+  .underline-sketch{width:120px;margin:18px 0 40px;}
+  .underline-sketch path{
+    fill:none;stroke:var(--sage);stroke-width:3;stroke-linecap:round;
+  }
+
+  /* ---------- ABOUT ---------- */
+  .about{background:var(--paper);}
+  .about .wrap{display:grid;grid-template-columns:0.85fr 1.15fr;gap:64px;align-items:center;}
+  @media(max-width:800px){.about .wrap{grid-template-columns:1fr;}}
+  .portrait-frame{
+    position:relative;border-radius:16px;overflow:hidden;
+    box-shadow:0 24px 60px -20px rgba(143,85,97,0.35);
+  }
+  .portrait-frame img{width:100%;display:block;}
+  .portrait-frame::after{
+    content:'';position:absolute;inset:0;
+    border:3px solid var(--paper);border-radius:16px;
+    box-shadow:inset 0 0 0 1px rgba(179,113,127,0.25);
+  }
+  .about p{color:var(--ink-soft);font-size:1.02rem;line-height:1.75;margin-bottom:18px;}
+  .about p strong{color:var(--ink);font-weight:600;}
+  .collab-strip{
+    margin-top:28px;padding-top:22px;border-top:1px solid var(--blush-deep);
+    font-size:0.82rem;color:var(--ink-soft);letter-spacing:0.02em;
+  }
+  .collab-strip b{color:var(--rose-deep);font-weight:600;}
+
+  /* ---------- GALLERY ---------- */
+  .gallery{background:var(--cream);}
+  .gallery-grid{
+    display:grid;grid-template-columns:repeat(2,1fr);gap:28px;margin-top:20px;
+  }
+  @media(max-width:720px){.gallery-grid{grid-template-columns:1fr;}}
+  .piece{
+    background:var(--paper);border-radius:14px;overflow:hidden;
+    box-shadow:0 14px 40px -18px rgba(55,43,48,0.18);
+    transition:transform .35s ease, box-shadow .35s ease;
+  }
+  .piece:hover{transform:translateY(-6px);box-shadow:0 22px 50px -18px rgba(55,43,48,0.28);}
+  .piece img{width:100%;display:block;aspect-ratio:4/5;object-fit:cover;}
+  .piece-caption{padding:18px 20px 22px;}
+  .piece-caption .tag{font-size:0.68rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--rose);}
+  .piece-caption h3{font-family:'Fraunces',serif;font-weight:500;font-size:1.15rem;margin-top:6px;}
+  .piece-caption p{font-size:0.85rem;color:var(--ink-soft);margin-top:4px;}
+
+  /* ---------- SERVICES ---------- */
+  .services{background:var(--paper);}
+  .service-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:20px;
+  }
+  @media(max-width:840px){.service-grid{grid-template-columns:1fr;}}
+  .service-card{
+    background:var(--cream);border-radius:16px;padding:34px 28px;
+    border:1px solid var(--blush-deep);
+    display:flex;flex-direction:column;height:100%;
+  }
+  .service-card .num{
+    font-family:'Fraunces',serif;font-style:italic;font-size:1.6rem;color:var(--rose);margin-bottom:14px;
+  }
+  .service-card h3{font-family:'Fraunces',serif;font-weight:500;font-size:1.25rem;margin-bottom:12px;}
+  .service-card p{color:var(--ink-soft);font-size:0.9rem;line-height:1.65;flex-grow:1;}
+  .service-card .quote-note{
+    margin-top:18px;font-size:0.75rem;letter-spacing:0.05em;color:var(--sage-deep);
+    font-weight:500;
+  }
+
+  /* ---------- TESTIMONIALS ---------- */
+  .testimonials{background:var(--blush);}
+  .t-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:20px;}
+  @media(max-width:840px){.t-grid{grid-template-columns:1fr;}}
+  .t-card{
+    background:var(--paper);border-radius:14px;padding:28px 26px;
+    box-shadow:0 12px 32px -18px rgba(55,43,48,0.2);
+  }
+  .t-card .quote-mark{font-family:'Fraunces',serif;font-size:2.4rem;color:var(--rose);line-height:0.4;display:block;margin-bottom:14px;}
+  .t-card p.quote{font-size:0.92rem;color:var(--ink);line-height:1.6;font-style:italic;margin-bottom:16px;}
+  .t-card .who{font-size:0.8rem;color:var(--ink-soft);font-weight:600;}
+  .t-card .placeholder-flag{
+    display:inline-block;margin-top:10px;font-size:0.68rem;letter-spacing:0.08em;
+    color:var(--sage-deep);background:rgba(147,166,136,0.15);
+    padding:3px 9px;border-radius:20px;
+  }
+
+  /* ---------- CONTACT ---------- */
+  .contact{background:var(--cream);text-align:center;}
+  .contact .wrap{max-width:640px;}
+  .contact h2{margin-bottom:14px;}
+  .contact p{color:var(--ink-soft);font-size:1rem;margin-bottom:38px;}
+  .contact-buttons{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;}
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:15px 30px;border-radius:40px;
+    font-size:0.9rem;font-weight:500;letter-spacing:0.02em;
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .btn-primary{
+    background:var(--sage);color:var(--paper);
+    box-shadow:0 12px 30px -10px rgba(114,133,97,0.55);
+  }
+  .btn-primary:hover{transform:translateY(-3px);box-shadow:0 16px 36px -10px rgba(114,133,97,0.65);}
+  .btn-secondary{
+    background:transparent;color:var(--rose-deep);
+    border:1.5px solid var(--rose-deep);
+  }
+  .btn-secondary:hover{transform:translateY(-3px);background:rgba(179,113,127,0.08);}
+
+  footer{
+    padding:36px 0;text-align:center;
+    font-size:0.78rem;color:var(--ink-soft);
+    background:var(--paper);border-top:1px solid var(--blush-deep);
+  }
+  footer .brand{font-size:1rem;margin-bottom:6px;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">Adava <span>Arts</span></div>
+    <div class="navlinks">
+      <a href="#about">About</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#services">Services</a>
+      <a href="#testimonials">Testimonials</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <svg class="sketch" viewBox="0 0 900 200" xmlns="http://www.w3.org/2000/svg">
+    <text x="450" y="120" text-anchor="middle" font-family="Fraunces, serif" font-weight="600"
+          font-size="96" class="sketch-path" letter-spacing="3">ADAVA</text>
+    <text x="450" y="120" text-anchor="middle" font-family="Fraunces, serif" font-weight="600"
+          font-size="96" class="fill-in" fill="#372B30" letter-spacing="3">ADAVA</text>
+
+    <text x="450" y="180" text-anchor="middle" font-family="Fraunces, serif" font-weight="300"
+          font-style="italic" font-size="38" class="sketch-path"
+          style="animation-delay:.35s;stroke-width:1.6;">Arts</text>
+    <text x="450" y="180" text-anchor="middle" font-family="Fraunces, serif" font-weight="300"
+          font-style="italic" font-size="38" class="fill-in" fill="#B3717F"
+          style="animation-delay:2.6s;">Arts</text>
+  </svg>
+
+  <div class="hero-tagline">Portraits in Graphite &amp; Charcoal · Graphic Design</div>
+
+  <div class="hero-credit">
+    <div class="by">Directed by</div>
+    <div class="name">Ameh David</div>
+  </div>
+
+  <div class="scroll-cue">Scroll ↓</div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="wrap">
+    <div class="portrait-frame">
+      <img src="./assets/director-portrait.png" alt="Ameh David, Director of Adava Arts">
+    </div>
+    <div>
+      <span class="eyebrow">The Director</span>
+      <h2>Building brands <em>by hand</em></h2>
+      <svg class="underline-sketch" viewBox="0 0 120 12"><path d="M2 8 Q 30 2, 60 7 T 118 6"/></svg>
+      <p><strong>Ameh David</strong> is the director and creative lead behind Adava Arts — a design studio built on a simple belief: small businesses deserve visuals that feel considered, not templated.</p>
+      <p>Currently balancing secondary school with a growing client list, David works across two disciplines: <strong>hyperrealistic graphite and charcoal portraiture</strong>, and <strong>graphic design for promotional media</strong> — flyers, menus, and social campaigns for local food and lifestyle brands.</p>
+      <p>What started as a personal sketchbook practice has grown into a studio serving real clients with real deadlines, with every project treated as a chance to sharpen the craft.</p>
+      <div class="collab-strip">
+        Collaborations &amp; team work: <b>Adex Graphics</b> &middot; <b>Leun-Emmy Graphics</b>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery" id="gallery">
+  <div class="wrap">
+    <span class="eyebrow">Selected Work</span>
+    <h2>Recent <em>commissions</em></h2>
+    <svg class="underline-sketch" viewBox="0 0 120 12"><path d="M2 8 Q 30 2, 60 7 T 118 6"/></svg>
+
+    <div class="gallery-grid">
+      <div class="piece">
+        <img src="./assets/work-foodzone.jpg" alt="The Foodzone promotional menu flyer">
+        <div class="piece-caption">
+          <span class="tag">Promo Flyer</span>
+          <h3>The Foodzone — Daily Menu</h3>
+          <p>Bold typography and warm lighting built around a hero product shot.</p>
+        </div>
+      </div>
+      <div class="piece">
+        <img src="./assets/work-jeygrills.jpg" alt="Jey Grills shawarma promo flyer">
+        <div class="piece-caption">
+          <span class="tag">Promo Flyer</span>
+          <h3>Jey Grills — Shawarma Craving</h3>
+          <p>High-energy layout designed to drive urgency around a limited promo.</p>
+        </div>
+      </div>
+      <div class="piece">
+        <img src="./assets/work-mummydee.jpg" alt="Mummy Dee cakes and zobo branding">
+        <div class="piece-caption">
+          <span class="tag">Brand Badge</span>
+          <h3>Mummy Dee — Cakes &amp; Zobo</h3>
+          <p>Circular badge branding built for easy reuse across packaging and social.</p>
+        </div>
+      </div>
+      <div class="piece">
+        <img src="./assets/work-cakes.jpg" alt="Cakes and confections event flyer">
+        <div class="piece-caption">
+          <span class="tag">Event Flyer</span>
+          <h3>Cakes &amp; Confections</h3>
+          <p>A full product spread designed to showcase range at a glance.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="wrap">
+    <span class="eyebrow">What I Offer</span>
+    <h2>Services &amp; <em>commissions</em></h2>
+    <svg class="underline-sketch" viewBox="0 0 120 12"><path d="M2 8 Q 30 2, 60 7 T 118 6"/></svg>
+
+    <div class="service-grid">
+      <div class="service-card">
+        <span class="num">01</span>
+        <h3>Flyer &amp; Poster Design</h3>
+        <p>Promotional graphics for menus, offers, and events — built to grab attention on WhatsApp and Instagram feeds.</p>
+        <span class="quote-note">Contact for a custom quote</span>
+      </div>
+      <div class="service-card">
+        <span class="num">02</span>
+        <h3>Portrait Commissions</h3>
+        <p>Hyperrealistic graphite and charcoal portraits from a reference photo, delivered as a print-ready scan or the original piece.</p>
+        <span class="quote-note">Contact for a custom quote</span>
+      </div>
+      <div class="service-card">
+        <span class="num">03</span>
+        <h3>Brand &amp; Social Graphics</h3>
+        <p>Ongoing content packs, badges, and templates to keep a small brand's social presence consistent.</p>
+        <span class="quote-note">Contact for a custom quote</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimonials">
+  <div class="wrap">
+    <span class="eyebrow">Client Words</span>
+    <h2>What clients <em>say</em></h2>
+    <svg class="underline-sketch" viewBox="0 0 120 12"><path d="M2 8 Q 30 2, 60 7 T 118 6"/></svg>
+
+    <div class="t-grid">
+      <div class="t-card">
+        <span class="quote-mark">&ldquo;</span>
+        <p class="quote">Working with ADAVA Arts has been an absolute pleasure. Their attention to detail and ability to bring creative visions to life is truly exceptional. They didn't just deliver a piece of art; they delivered an experience that perfectly captures the essence of our story.</p>
+        <div class="who">Tomi love,</div>
+        <span class="placeholder-flag">Tomisin Graphics design</span>
+      </div>
+      <div class="t-card">
+        <span class="quote-mark">&ldquo;</span>
+        <p class="quote">Incredible experience from start to finish. ADAVA Arts is highly professional, delivers outstanding quality on time, and really understands visual branding. Will definitely work together again</p>
+        <div class="who">Osh. Emmanuel, LEUN-EMMY Graphics</div>
+        <span class="placeholder-flag">Placeholder — Direcor of Leun-emmy graphics</span>
+      </div>
+      <div class="t-card">
+        <span class="quote-mark">&ldquo;</span>
+        <p class="quote">Pure creativity and professionalism! ADAVA Arts exceeded all expectations. If you need top-tier graphics and design, look no further</p>
+        <div class="who">Elon kazzy.</div>
+        <span class="placeholder-flag">Director of Muhakaz maths quiz</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="wrap">
+    <span class="eyebrow">Get In Touch</span>
+    <h2>Let's build <em>something</em></h2>
+    <p>For commissions, collaborations, or just to say hello — reach out directly or follow the channel for new work.</p>
+    <div class="contact-buttons">
+      <a class="btn btn-primary" href="https://whatsapp.com/channel/0029VbCLiJyGJP8C99Uoyk44" target="_blank" rel="noopener">
+        Follow WhatsApp Channel
+      </a>
+      <a class="btn btn-secondary" href="mailto:annm80902@gmail.com">
+        Email Ameh David
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="brand">Adava Arts</div>
+  &copy; 2026 Ameh David. All work shown remains the property of Adava Arts.
+</footer>
+
+</body>
+  </html>
+  
